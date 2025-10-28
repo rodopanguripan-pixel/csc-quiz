@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>CSC Quick Quiz — Timed 15-Item Round</title>
+<title>CSC Quick Quiz — 15-Item Timed Round</title>
 <style>
 :root{
   --bg:#f7fafc;--card:#fff;--accent:#0f172a;
@@ -91,12 +91,16 @@ const qs=document.getElementById('questions'),catSel=document.getElementById('ca
       pageInfo=document.getElementById('pageInfo'),score=document.getElementById('score'),
       timerEl=document.getElementById('timer');
 CATEGORIES.forEach(c=>{let o=document.createElement('option');o.value=c;o.textContent=c;catSel.appendChild(o);});
-let curCat=CATEGORIES[0],curPage=0,pageSize=15,set=[],pages=[],timerInt,remaining=900;
 
-function makeSet(cat){clearInterval(timerInt);remaining=900;updateTimer();
+let curCat=CATEGORIES[0],curPage=0,pageSize=15,set=[],pages=[],timerInt,remaining=900,timerStarted=false;
+
+function makeSet(cat){
+  clearInterval(timerInt);remaining=900;updateTimer();timerStarted=false;
   const pool=byCat[cat].slice();shuffle(pool);
   pages=[];for(let i=0;i<pool.length;i+=pageSize)pages.push(pool.slice(i,i+pageSize));
-  curPage=0;set=pages[curPage];render();startTimer();}
+  curPage=0;set=pages[curPage];render();
+}
+
 function render(){
   qs.innerHTML='';score.textContent='';
   if(!set.length)return;
@@ -111,8 +115,15 @@ function render(){
     div.appendChild(opts);qs.appendChild(div);
   });
   pageInfo.textContent=`Showing 1–${set.length}`;
+  qs.querySelectorAll('input[type=radio]').forEach(inp=>{
+    inp.addEventListener('change',()=>{
+      if(!timerStarted){timerStarted=true;startTimer();}
+    });
+  });
 }
+
 function startTimer(){
+  clearInterval(timerInt);
   timerInt=setInterval(()=>{
     remaining--;
     updateTimer();
@@ -123,10 +134,9 @@ function updateTimer(){
   const m=Math.floor(remaining/60),s=remaining%60;
   timerEl.textContent=`${m.toString().padStart(2,"0")}:${s.toString().padStart(2,"0")}`;
 }
-function autoSubmit(){
-  document.getElementById('submitBtn').click();
-}
+function autoSubmit(){document.getElementById('submitBtn').click();}
 function escapeHtml(s){return s.replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));}
+
 document.getElementById('submitBtn').addEventListener('click',()=>{
   clearInterval(timerInt);
   let correct=0,total=set.length;
