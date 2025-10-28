@@ -3,31 +3,46 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>CSC Quick Quiz — 15 rotating items</title>
+<title>CSC Quick Quiz — Timed 15-Item Round</title>
 <style>
-  :root{
-    --bg:#f7fafc; --card:#fff; --accent:#0f172a;
-  }
-  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
-       background:var(--bg); color:var(--accent); margin:0; padding:18px; -webkit-font-smoothing:antialiased;}
-  .wrap{max-width:900px;margin:0 auto;}
-  header{display:flex;gap:16px;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;}
-  h1{font-size:1.1rem;margin:0}
-  .controls{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-  select, button{padding:8px 10px;border-radius:8px;border:1px solid #e6e9ee;background:#fff}
-  .grid{display:grid;grid-template-columns:1fr;gap:12px}
-  .qpanel{background:var(--card);border-radius:10px;padding:12px;box-shadow:0 2px 10px rgba(12,15,20,.04);max-height:70vh;overflow:auto}
-  .q{padding:10px;border-bottom:1px solid #f1f5f9}
-  .q:last-child{border-bottom:0}
-  .q h3{margin:0 0 8px 0;font-size:0.98rem}
-  .opts{display:flex;flex-direction:column;gap:6px}
-  .opt{display:flex;gap:8px;align-items:center}
-  label{cursor:pointer;padding:8px;border-radius:8px;border:1px solid transparent}
-  input[type=radio]{accent-color: #334155}
-  .actions{display:flex;gap:8px;align-items:center;margin-top:10px;flex-wrap:wrap}
-  .muted{font-size:0.85rem;color:#64748b}
-  footer{margin-top:12px;font-size:0.85rem;color:#475569;text-align:center}
-  .btn{background:#111827;color:#fff;border:0;padding:8px 10px;border-radius:8px;cursor:pointer}
+:root{
+  --bg:#f7fafc;--card:#fff;--accent:#0f172a;
+}
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+     background:var(--bg);color:var(--accent);margin:0;padding:18px;
+     -webkit-font-smoothing:antialiased;}
+.wrap{max-width:900px;margin:0 auto;}
+header{display:flex;gap:16px;align-items:center;justify-content:space-between;
+       margin-bottom:12px;flex-wrap:wrap;}
+h1{font-size:1.1rem;margin:0}
+.controls{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+select,button{padding:8px 10px;border-radius:8px;border:1px solid #e6e9ee;
+              background:#fff;cursor:pointer}
+.grid{display:grid;grid-template-columns:1fr;gap:12px}
+.qpanel{background:var(--card);border-radius:10px;padding:12px;
+        box-shadow:0 2px 10px rgba(12,15,20,.04);max-height:70vh;overflow:auto}
+.q{padding:10px;border-bottom:1px solid #f1f5f9}
+.q:last-child{border-bottom:0}
+.q h3{margin:0 0 8px 0;font-size:0.98rem}
+.opts{display:flex;flex-direction:column;gap:6px}
+label{cursor:pointer;padding:8px;border-radius:8px;border:1px solid transparent}
+input[type=radio]{accent-color:#334155}
+.actions{display:flex;gap:8px;align-items:center;margin-top:10px;
+         flex-wrap:wrap;justify-content:space-between}
+.muted{font-size:0.85rem;color:#64748b}
+footer{margin-top:12px;font-size:0.85rem;color:#475569;text-align:center}
+.btn{background:#111827;color:#fff;border:0;padding:8px 10px;border-radius:8px;cursor:pointer}
+.answer{margin-top:8px;padding:6px 8px;border-left:4px solid #0f172a;background:#f8fafc;border-radius:4px}
+.scorebox{font-weight:600;color:#0f172a;font-size:1.1rem;margin-top:8px;text-align:center}
+.timer{font-weight:600;font-size:1rem;color:#0f172a;}
+@keyframes graffiti {
+  0%{transform:scale(1) rotate(0);color:#0f172a;}
+  25%{transform:scale(1.3) rotate(-5deg);color:#f59e0b;}
+  50%{transform:scale(1.5) rotate(5deg);color:#16a34a;}
+  75%{transform:scale(1.3) rotate(-5deg);color:#3b82f6;}
+  100%{transform:scale(1) rotate(0);color:#0f172a;}
+}
+.graffiti{animation:graffiti 0.9s ease-in-out 3;}
 </style>
 </head>
 <body>
@@ -35,20 +50,26 @@
   <header>
     <h1>CSC Quick Quiz — 15 rotating items</h1>
     <div class="controls">
-      <select id="category" aria-label="Choose category"></select>
+      <select id="category"></select>
       <button id="newSet" class="btn">New set</button>
-      <button id="showAnswers" title="Reveal correct answers">Reveal answers</button>
+      <span class="timer" id="timer">15:00</span>
     </div>
   </header>
 
   <div class="grid">
     <div class="qpanel">
-      <div id="questions" aria-live="polite"></div>
+      <div id="questions"></div>
       <div class="actions">
-        <button id="prevPage">Prev</button>
-        <button id="nextPage">Next</button>
-        <div class="muted" id="pageInfo">Showing 1–15</div>
+        <div>
+          <button id="prevPage">Prev</button>
+          <button id="nextPage">Next</button>
+        </div>
+        <div>
+          <button id="submitBtn" class="btn">Submit Answers</button>
+        </div>
       </div>
+      <div class="muted" id="pageInfo">Showing 1–15</div>
+      <div id="score" class="scorebox"></div>
     </div>
   </div>
 
@@ -56,125 +77,78 @@
 </div>
 
 <script>
-const shuffle = arr => {for (let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}return arr;};
-
-const CATEGORIES = [
-  "Graphs & Data","Vocabulary","Idiomatic / Grammar","Analogy & Logic",
+const shuffle=a=>{for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+const CATEGORIES=["Graphs & Data","Vocabulary","Idiomatic / Grammar","Analogy & Logic",
   "Reading Comprehension","Paragraph Organization","Clerical Operations",
-  "Philippine Constitution & General Info","Numerical Reasoning"
-];
+  "Philippine Constitution & General Info","Numerical Reasoning"];
+const seeded=[{id:"V12",category:"Vocabulary",q:"That perfume always 'evokes' pleasant memories. 'Evokes' here most nearly means:",choices:["angers","erases","calls up","confuses"],answer:"calls up"}];
+function fill(bank,target=300){const b=[...bank];const cats=CATEGORIES;let n=1;
+  while(b.length<target){const cat=cats[b.length%cats.length];const id="F"+(b.length+1);
+    b.push({id,category:cat,q:`Sample ${cat} question #${b.length}`,choices:["A","B","C","D"],answer:"A"});n++;}return b;}
+let BANK=fill(seeded);
+const byCat={};CATEGORIES.forEach(c=>byCat[c]=BANK.filter(q=>q.category===c));
+const qs=document.getElementById('questions'),catSel=document.getElementById('category'),
+      pageInfo=document.getElementById('pageInfo'),score=document.getElementById('score'),
+      timerEl=document.getElementById('timer');
+CATEGORIES.forEach(c=>{let o=document.createElement('option');o.value=c;o.textContent=c;catSel.appendChild(o);});
+let curCat=CATEGORIES[0],curPage=0,pageSize=15,set=[],pages=[],timerInt,remaining=900;
 
-const seededItems = [
-  {id:"V12",category:"Vocabulary",q:"That perfume always 'evokes' pleasant memories. 'Evokes' here most nearly means:",choices:["angers","erases","calls up","confuses"],answer:"calls up"},
-  {id:"I31",category:"Idiomatic / Grammar",q:"If you don't 'spill the beans' now, you might regret it. 'Spill the beans' means:",choices:["spread rumors","let out a secret","plant some seeds","none of the above"],answer:"let out a secret"},
-  {id:"C106",category:"Clerical Operations",q:"This is a type of document issued by a seller to a buyer indicating products and prices sold. It is called:",choices:["Check voucher","Purchase order","Delivery receipt","Sales invoice"],answer:"Sales invoice"}
-];
-
-function generateFillerQuestions(currentBank,targetTotal=300){
-  const nextId=n=>"F"+n.toString().padStart(3,"0");
-  const bank=[...currentBank];
-  const used=new Set(bank.map(b=>b.id));
-  let counter=1;
-  while(bank.length<targetTotal){
-    const cat=CATEGORIES[(bank.length+counter)%CATEGORIES.length];
-    const id=nextId(bank.length+1);
-    if(used.has(id)){counter++;continue;}
-    let qObj;
-    if(cat==="Numerical Reasoning"){
-      const a=Math.floor(Math.random()*90)+10,b=Math.floor(Math.random()*90)+10;
-      qObj={id,category:cat,q:`If ${a} and ${b} are two numbers, what is their average?`,
-        choices:[String(Math.round((a+b)/2-2)),String(Math.round((a+b)/2)),String(Math.round((a+b)/2+3)),String(Math.round((a+b)/2+6))],
-        answer:String(Math.round((a+b)/2))};
-    }else if(cat==="Vocabulary"){
-      const words=[["prolific","productive"],["plausible","credible"],["placid","calm"],["inveterate","deep-rooted"],["bellicose","belligerent"]];
-      const pair=words[(bank.length+counter)%words.length];
-      qObj={id,category:cat,q:`The word "${pair[0]}" most nearly means:`,
-        choices:[pair[1],"ambiguous","expensive","rare"],answer:pair[1]};
-    }else if(cat==="Analogy & Logic"){
-      qObj={id,category:cat,q:`DOG is to PUPPY as CAT is to:`,choices:["calf","kitten","foal","cub"],answer:"kitten"};
-    }else if(cat==="Reading Comprehension"){
-      qObj={id,category:cat,q:`'Pollutants travel long distances by wind.' Which is best supported?`,
-        choices:["Pollutants stay local","Pollutants can travel far","Pollutants never travel by air","Pollutants always settle quickly"],
-        answer:"Pollutants can travel far"};
-    }else if(cat==="Philippine Constitution & General Info"){
-      qObj={id,category:cat,q:`Which body is the lower chamber of Congress in the Philippines?`,
-        choices:["Senate","House of Representatives","National Assembly","Parliament"],answer:"House of Representatives"};
-    }else{
-      const x=Math.floor(Math.random()*100)+1,y=Math.floor(Math.random()*100)+1;
-      qObj={id,category:cat,q:`If ${x} out of ${y} students passed, what percent passed (rounded)?`,
-        choices:[`${Math.round((x/y)*100-2)}%`,`${Math.round((x/y)*100)}%`,`${Math.round((x/y)*100+5)}%`],
-        answer:`${Math.round((x/y)*100)}%`};
-    }
-    bank.push(qObj);used.add(id);counter++;
-  }
-  return bank;
-}
-
-let QUESTION_BANK=generateFillerQuestions(seededItems.slice(),300);
-const QUESTIONS_BY_CAT={};
-CATEGORIES.forEach(c=>QUESTIONS_BY_CAT[c]=QUESTION_BANK.filter(q=>q.category===c));
-
-const categorySelect=document.getElementById('category');
-const questionsDiv=document.getElementById('questions');
-const pageInfo=document.getElementById('pageInfo');
-
-let currentCategory=CATEGORIES[0];
-let currentPage=0;
-let pageSize=15;
-let currentSet=[];
-let pages=[];
-
-function populateCategorySelect(){
-  CATEGORIES.forEach(c=>{
-    const opt=document.createElement('option');
-    opt.value=c;opt.textContent=c;categorySelect.appendChild(opt);
-  });
-}
-populateCategorySelect();
-
-function makeRandomSetForCategory(cat){
-  const pool=QUESTIONS_BY_CAT[cat].slice();shuffle(pool);
-  pages=[];for(let i=0;i<pool.length;i+=pageSize){pages.push(pool.slice(i,i+pageSize));}
-  currentPage=0;currentSet=pages[currentPage]||[];renderQuestions();
-}
-
-function renderQuestions(){
-  questionsDiv.innerHTML='';
-  if(currentSet.length===0){questionsDiv.innerHTML='<p class="muted">No questions.</p>';pageInfo.textContent='0';return;}
-  currentSet.forEach((qObj,idx)=>{
-    const qWrap=document.createElement('div');qWrap.className='q';
-    const qh=document.createElement('h3');qh.innerHTML=(idx+1)+". "+escapeHtml(qObj.q);qWrap.appendChild(qh);
+function makeSet(cat){clearInterval(timerInt);remaining=900;updateTimer();
+  const pool=byCat[cat].slice();shuffle(pool);
+  pages=[];for(let i=0;i<pool.length;i+=pageSize)pages.push(pool.slice(i,i+pageSize));
+  curPage=0;set=pages[curPage];render();startTimer();}
+function render(){
+  qs.innerHTML='';score.textContent='';
+  if(!set.length)return;
+  set.forEach((q,i)=>{
+    const div=document.createElement('div');div.className='q';
+    div.innerHTML=`<h3>${i+1}. ${q.q}</h3>`;
     const opts=document.createElement('div');opts.className='opts';
-    qObj.choices.forEach((ch,i)=>{
-      const id=`q-${qObj.id}-${i}`;
-      const optRow=document.createElement('label');optRow.className='opt';
-      const radio=document.createElement('input');radio.type='radio';radio.name=qObj.id;radio.value=ch;radio.id=id;
-      const txt=document.createElement('span');txt.textContent=ch;
-      optRow.appendChild(radio);optRow.appendChild(txt);opts.appendChild(optRow);
+    q.choices.forEach((ch,j)=>{
+      const id=`${q.id}-${j}`;
+      opts.innerHTML+=`<label><input type="radio" name="${q.id}" value="${ch}"> ${ch}</label>`;
     });
-    qWrap.appendChild(opts);questionsDiv.appendChild(qWrap);
+    div.appendChild(opts);qs.appendChild(div);
   });
-  const start=currentPage*pageSize+1;
-  const end=Math.min((currentPage+1)*pageSize,QUESTIONS_BY_CAT[currentCategory].length||QUESTION_BANK.length);
-  pageInfo.textContent=`Showing ${start}–${end} (page ${currentPage+1}/${pages.length})`;
+  pageInfo.textContent=`Showing 1–${set.length}`;
 }
-
-function escapeHtml(s){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
-
-document.getElementById('newSet').addEventListener('click',()=>makeRandomSetForCategory(currentCategory));
-categorySelect.addEventListener('change',e=>{currentCategory=e.target.value;makeRandomSetForCategory(currentCategory);});
-document.getElementById('nextPage').addEventListener('click',()=>{if(!pages.length)return;currentPage=(currentPage+1)%pages.length;currentSet=pages[currentPage];renderQuestions();});
-document.getElementById('prevPage').addEventListener('click',()=>{if(!pages.length)return;currentPage=(currentPage-1+pages.length)%pages.length;currentSet=pages[currentPage];renderQuestions();});
-document.getElementById('showAnswers').addEventListener('click',()=>{
-  currentSet.forEach((qObj,idx)=>{
-    const qEl=questionsDiv.querySelectorAll('.q')[idx];
+function startTimer(){
+  timerInt=setInterval(()=>{
+    remaining--;
+    updateTimer();
+    if(remaining<=0){clearInterval(timerInt);autoSubmit();}
+  },1000);
+}
+function updateTimer(){
+  const m=Math.floor(remaining/60),s=remaining%60;
+  timerEl.textContent=`${m.toString().padStart(2,"0")}:${s.toString().padStart(2,"0")}`;
+}
+function autoSubmit(){
+  document.getElementById('submitBtn').click();
+}
+function escapeHtml(s){return s.replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));}
+document.getElementById('submitBtn').addEventListener('click',()=>{
+  clearInterval(timerInt);
+  let correct=0,total=set.length;
+  set.forEach((q,i)=>{
+    const sel=document.querySelector(`input[name="${q.id}"]:checked`);
+    const qEl=qs.querySelectorAll('.q')[i];
     const prev=qEl.querySelector('.answer');if(prev)prev.remove();
-    const ans=document.createElement('div');ans.className='answer';ans.style.marginTop='8px';
-    ans.innerHTML=`<strong>Answer:</strong> ${escapeHtml(qObj.answer)}`;qEl.appendChild(ans);
+    const ans=document.createElement('div');ans.className='answer';
+    if(sel&&sel.value===q.answer){correct++;ans.innerHTML=`✅ Correct! <b>${escapeHtml(q.answer)}</b>`;}
+    else ans.innerHTML=`❌ Correct answer: <b>${escapeHtml(q.answer)}</b>`;
+    qEl.appendChild(ans);
   });
+  const pct=Math.round((correct/total)*100);
+  let emoji=pct<80?"😢":"🎉";
+  score.innerHTML=`Score: ${correct}/${total} (${pct}%) ${emoji}`;
+  if(pct>=80)score.classList.add("graffiti");else score.classList.remove("graffiti");
 });
-
-currentCategory=CATEGORIES[0];makeRandomSetForCategory(currentCategory);
+document.getElementById('nextPage').onclick=()=>{curPage=(curPage+1)%pages.length;set=pages[curPage];render();}
+document.getElementById('prevPage').onclick=()=>{curPage=(curPage-1+pages.length)%pages.length;set=pages[curPage];render();}
+document.getElementById('newSet').onclick=()=>makeSet(curCat);
+catSel.onchange=e=>{curCat=e.target.value;makeSet(curCat);}
+makeSet(curCat);
 </script>
 </body>
 </html>
