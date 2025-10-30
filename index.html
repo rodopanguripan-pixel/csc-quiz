@@ -48,39 +48,39 @@ footer{margin-top:18px;font-size:0.9rem;color:#64748b;text-align:center}
 </head>
 <body>
 <div class="container">
-  <div class="header">
-  	<div>
-  	  <h1>The Reviewer's Edge</h1>
-  	  <div class="tagline">Sharpen your edge for the Civil Service Exam!</div>
-  	</div>
-  	<div style="text-align:right">
-  	  <div style="font-weight:600">CSC Mock Exam</div>
-  	  <div style="color:#94a3b8">Mixed 15 questions • 15:00 timer</div>
-  	</div>
-  </div>
+  <div class="header">
+    <div>
+      <h1>The Reviewer's Edge</h1>
+      <div class="tagline">Sharpen your edge for the Civil Service Exam!</div>
+    </div>
+    <div style="text-align:right">
+      <div style="font-weight:600">CSC Mock Exam</div>
+      <div style="color:#94a3b8">Mixed 15 questions • 15:00 timer</div>
+    </div>
+  </div>
 
-  <div class="startcard" id="startCard">
-  	<h2 style="margin-top:0">Ready to test your knowledge?</h2>
-  	<p class="tagline">Press Start Quiz to begin.</p>
-  	<button id="startBtn" class="btn">Start Quiz</button>
-  </div>
+  <div class="startcard" id="startCard">
+    <h2 style="margin-top:0">Ready to test your knowledge?</h2>
+    <p class="tagline">Press Start Quiz to begin.</p>
+    <button id="startBtn" class="btn">Start Quiz</button>
+  </div>
 
-  <div id="quizCard" style="display:none">
-  	<div style="display:flex;justify-content:space-between;align-items:center">
-  	  <div style="font-weight:600">Question Round</div>
-  	  <div><span id="timerDisplay" class="timer">15:00</span></div>
-  	</div>
-  	<div class="qpanel" id="questions" aria-live="polite"></div>
-  	<div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px">
-  	  <div><button id="newSet" class="btn">New set</button></div>
-  	  <div>
-  		<button id="submitBtn" class="btn">Submit Answers</button>
-  	  </div>
-  	</div>
-  	<div id="score" class="scorebox"></div>
-  </div>
+  <div id="quizCard" style="display:none">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <div style="font-weight:600">Question Round</div>
+      <div><span id="timerDisplay" class="timer">15:00</span></div>
+    </div>
+    <div class="qpanel" id="questions" aria-live="polite"></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px">
+      <div><button id="newSet" class="btn">New set</button></div>
+      <div>
+        <button id="submitBtn" class="btn">Submit Answers</button>
+      </div>
+    </div>
+    <div id="score" class="scorebox"></div>
+  </div>
 
-  <footer>The Reviewer's Edge • Combined Reviewers</footer>
+  <footer>The Reviewer's Edge • Combined Reviewers</footer>
 </div>
 <script>
 /* QUESTION_BANK: Replaced with 184 questions from your CSV file. */
@@ -2296,7 +2296,7 @@ const QUESTION_BANK = [
 ];
 
 /* NEW_ANSWER_KEY: Generated from your CSV file. */
-const ANSWER_KEY_B64 = "eyJORVdfUV8wMDEiOiAicmFzaCIsICJORVdfUV8wMDIiOiAiZW50aHVzaWFzdGljIiwgIk5FV19RXzAwMyI6ICJicmllZiIsICJORVdfUV8wMDQiOiAidGhvcm91Z2giLCAiTkVXX1FfMDA1IjogInRvbGVyYW50IiwgIk5FV19RXzAwNiI6ICJicmllZiIsICJORVdfUV8wMDciOiAid2FzdGVmdWwiLCAiTkVXX1FfMDA4IjogImZvcmNlZCIsICJORVdfUV8wMDkiOiAiZGlmZmljdWx0IiwgIk5FV19RXzAxMCI6ICJwZXJzdWFzaXZlIiwgIk5FV19RXzAxMSI6ICJzaHkiLCAiTkVXX1FfMDEyIjogImhhcmR3b3JraW5nIiwgIk5FV19RXzAxMyI6ICJjbHVtc3kiLCAiTkVXX1FfMDE0IjogInVuY2xlYXIiLCAiTkVXX1FfMDE1IjogInNtYXJ0IiwgIk5FV19RXzAxNiI6ICJkaXNvcmRlcmx5IiwgIk5FV19RXzAxNyI6ICJjbGVhciIsICJORVdfUV8wMTgiOiAiYnJpZ2h0IiwgIk5FV19RXzAxOSI6ICJicmF2ZSIsICJORVdfUV8wMjAiOiAicGxlbnRpZnVsIiwgIk5FV19RXzAyMSI6ICJyZWxldmFudCIsICJORVdfUV8wMjIiOiAib3V0ZGF0ZWQiLCAiTkVXX1FfMDIzIjogImlubm9jZW50IiwgIk5FV19RXzAyNCI6ICJ1bmNsZWFyIiwgIk5FV1BfMDI1IjogImhhcm1sZXNzIiwgIk5FV19RXzAyNiI6ICJmcmllbmRseSIsICJORVdfUV8wMjciOiAic2lsZW50IiwgIk5FV19RXzAyOCI6ICJzaG93eSIsICJORVdfUV8wMjkiOiAicHJhY3RpY2FsIiwgIk5FV19RXzAzMCI6ICJzaG9ydC1saXZlZCIsICJORVdfUV8wMzEiOiAic29jaWFibGUiLCAiTkVXX1FfMDMyIjogInNsdWdnaXNoIiwgIk5FV19RXzAzMyI6ICJ0aG91Z2h0ZnVsIiwgIk5FV19RXzAzNCI6ICJldmVyeXdoZXJlIiwgIk5FV19RXzAzNSI6ICJlbnRodXNpYXN0aWMiLCAiTkVXX1FfMDM2IjogInByb2R1Y3RpdmUiLCAiTkVXX1FfMDM3IjogImR1bGwiLCAiTkVXX1FfMDM4IjogImNhcmVmdWwiLCAiTkVXX1FfMDM5IjogImV4cHJlc3NpdmUiLCAiTkVXX1FfMDQwIjogInB1enpsaW5nIiwgIk5FV19RXzA0MSI6ICJtZXRpY3Vsb3VzIiwgIk5FV19RXzA0MiI6ICJwbGFpbiIsICJORVdfUV8wNDMiOiAidW5zdGFibGUiLCAiTkVXX1FfMDQ0IjogImFibnVuZGFudCIsICJORVdfUV8wNDUiOiAidGhyaWZ0eSIsICJORVdfUV8wNDYiOiAiaW5oZXJlbnQiLCAiTkVXX1FfMDQ3IjogImNoZWVmdWwiLCAiTkVXX1FfMDQ4IjogImhhcm1sZXNzIiwgIk5FV19RXzA0OSI6ICJvcmRpbmFyeSIsICJORVdfUV8wNTAiOiAibHV4dXJpb3VzIiwgIk5FV19RXzA1MSI6ICIxODAgeG0iLCAiTkVXX1FfMDUyIjogIjEwIiwgIk5FV19RXzA1MyI6ICLimDQwMCIsICJORVdfUV8wNTQiOiAiVG9reW8iLCAiTkVXX1FfMDU1IjogIuKYNzUiLCAiTkVXX1FfMDU2IjogIldpbGxpYW0gU2hha2VzcGVhcmUiLCAiTkVXX1FfMDU3IjogIjMwIiwgIk5FV19RXzA1OCI6ICJQYWNpZmljIE9jZWFuIiwgIk5FV19RXzA1OSI6ICIzOjIiLCAiTkVXX1FfMDYwIjogIldvbiIsICJORVdfUV8wNjEiOiAiQXUiLCAiTkVXX1FfMDYyIjogIjUwIGNtwrIiLCAiTkVXX1FfMDYzIjogIkdlb3JnZSBXYXNoaW5ndG9uIiwgIk5FV19RXzA2NCI6ICI1MCIsICJORVdfUV8wNjUiOiAiRWd5cHQiLCAiTkVXX1FfMDY2IjogIjIgaG91cnMgMzAgbWludXRlcyIsICJORVdfUV8wNjciOiAiQXVzdHJhbGlhIiwgIk5FV19RXzA2OCI6ICI5IiwgIk5FV19RXzA2OSI6ICJNYXJzIiwgIk5FV19RXzA3MCI6ICIxMyIsICJORVdfUV8wNzEiOiAiRGlhbW9uZCIsICJORVdfUV8wNzIiOiAiMjAiLCAiTkVXX1FfMDczIjogIkFsZXhhbmRlciBHcmFoYW0gQmVsbCIsICJORVdfUV8wNzQiOiAiNDLCsCIsICJORVdfUV8wNzUiOiAiMTAwwrAiLCAiTkVXX1FfMDc2IjogIuKYOCIsICJORVdfUV8wNzciOiAiRmxvdXIiLCAiTkVXX1FfMDc4IjogIjAuNzUiLCAiTkVXX1FfMDc5IjogIjciLCAiTkVXX1FfMDgwIjogIjM6MSIsICJORVdfUV8wODEiOiAiQmx1ZSBXaGFsZSIsICJORVdfUV8wODIiOiAiMjQgY20iLCAiTkVXX1FfMDgzIjogIkphcGFuIiwgIk5FV19RXzA4NCI6ICIzNjYiLCAiTkVXX1FfMDg1IjogIkFtYXpvbiBSaXZlciIsICJORVdfUV8wODYiOiAiMTAwIiwgIk5FV19RXzA4NyI6ICJQb3VuZCBTdGVybGluZyIsICJORVdfUV8wODgiOiAiMTAiLCAiTkVXX1FfMDg5IjogIkFudGFyY3RpYyBEZXNlcnQiLCAiTkVXX1FfMDkwIjogIjEyMCIsICJORVdfUV8wOTEiOiAiSi5LLiBSb3dsaW5nIiwgIk5FV19RXzA5MiI6ICIxMSIsICJORVdfUV8wOTMiOiAiT3R0YXdhIiwgIk5FV19RXzA5NCI6ICLimDIwMCIsICJORVdfUV8wOTUiOiAiSDJPIiwgIk5FV19RXzA5NiI6ICI2MCIsICJORVdfUV8wOTciOiAiQ2FuYmVycmEiLCAiTkVXX1FfMDk4IjogIjEvMyIsICJORVdfUV8wOTkiOiAiRWlmZmVsIFRvd2VyIiwgIk5FV19RXzEwMCI6ICIyNSIsICJORVdfUV8xMDEiOiAiMjAiLCAiTkVXX1FfMTAyIjogIlNhbXBhZ3VpdGEiLCAiTkVXX1FfMTAzIjogIjYiLCAiTkVXX1FfMTA0IjogIlBvcnR1Z3Vlc2UiLCAiTkVXX1FfMTA1IjogIjU2IiwgIk5FV19RXzEwNiI6ICJSb21lIiwgIk5FV19RXzEwNyI6ICI5MCUiLCAiTkVXX1FfMTA4IjogIk8iLCAiTkVXX1FfMTA5IjogIjEwMCIsICJORVdfUV8xMTAiOiAiQ2hlZXRhaCIsICJORVdfUV8xMTEiOiAiNCIsICJORVdfUV8xMTIiOiAiUnVzc2lhIiwgIk5FV19RXzExMyI6ICJNIiwgIk5FV19RXzExNCI6ICJNYWRyaWQiLCAiTkVXX1FfMTE1IjogIjUwIiwgIk5FV19RXzExNiI6ICJZZW4iLCAiTkVXX1FfMTE3IjogIjg6NDUgUE0iLCAiTkVXX1FfMTE4IjogIjUwIiwgIk5FV19RXzExOSI6ICIxODDCsCIsICJORVdfUV8xMjAiOiAiQ2Fpcm8iLCAiTkVXX1FfMTIxIjogIuKYMTIiLCAiTkVXX1FfMTIyIjogIlNwYW5pc2giLCAiTkVXX1FfMTIzIjogIjYwIiwgIk5FV19RXzEyNCI6ICJCZXJsaW4iLCAiTkVXX1FfMTI1IjogIjUiLCAiTkVXX1FfMTI2IjogIlNraW4iLCAiTkVXX1FfMTI3IjogIjEwMCBjZW50cyIsICJORVdfUV8xMjgiOiAiQmVpamluZyIsICJORVdfUV8xMjkiOiAiNSIsICJORVdfUV8xMzAiOiAiQ2FyYWJhbyIsICJORVdfUV8xMzEiOiAiMy80IiwgIk5FV19RXzEzMiI6ICJNb3Njb3ciLCAiTkVXX1FfMTMzIjogIlJpZ2h0LWFuZ2xlZCIsICJORVdfUV8xMzQiOiAiWXVhbiIsICJORVdfUV8xMzUiOiAiMzYiLCAiTkVXX1FfMTM2IjogIk5ldyBEZWxoaSIsICJORVdfUV8xMzciOiAiMy4xNCIsICJORVdfUV8xMzgiOiAiTG9uZG9uIiwgIk5FV19RXzEzOSI6ICIzIGRheXMiLCAiTkVXX1FfMTQwIjogIlNwYW5pc2giLCAiTkVXX1FfMTQxIjogIjQ1IiwgIk5FV19RXzE0MiI6ICJQYXJpcyIsICJORVdfUV8xNDMiOiAiRmUiLCAiTkVXX1FfMTQ0IjogIjExIiwgIk5FV19RXzE0NSI6ICIxMjAiLCAiTkVXX1FfMTQ2IjogIlNlbmFsIiwgIk5FV19RXzE0NyI6ICI1IGttIiwgIk5FV19RXzE0OCI6ICJNZXJjdXJ5IiwgIk5FV19RXzE0OSI6ICIzMiIsICJORVdfUV8xNTAiOiAiQmFuZ2tvayIsICJORVdfUV8xNTEiOiAiTWFuaWxhIiwgIk5FV19RXzE1MiI6ICJKb3NlIFJpemFsIiwgIk5FV19RXzE1MyI6ICJDYWdheWFuIFJpdmVyIiwgIk5FV19RXzE1NCI6ICJCbHVlIFdoYWxlIiwgIk5FV19RXzE1NSI6ICJNb3VudCBFdmVyZXN0IiwgIk5FV19RXzE1NiI6ICJUaGUgU3VuIiwgIk5FV19RXzE1NyI6ICJMZW9uYXJkbyBkYSBWaW5jaSIsICJORVdfUV8xNTgiOiAiQW5kcmVzIEJvbmlmYWNpbyIsICJORVdfUV8xNTkiOiAiVGhlcm1vbWV0ZXIiLCAiTkVXX1FfMTYwIjogIk1lcmN1cnkiLCAiTkVXX1FfMTYxIjogIkx1em9uIiwgIk5FV1NBfTE2MiI6ICJDYXJib24gRGlveGlkZSIsICJORVdfUV8xNjMiOiAiR2VvbG9neSIsICJORVdfUV8xNjQiOiAiMTkiLCAiTkVXX1FfMTY1IjogIjQyIiwgIk5FV19RXzE2NiI6ICIyMSIsICJORVdfUV8xNjciOiAiSyIsICJORVdfUV8xNjgiOiAiMzAiLCAiTkVXX1FfMTY5IjogIjUwIiwgIk5FV19RXzE3MCI6ICJVIiwgIk5FV19RXzE3MSI6ICIxMDAwMCIsICJORVdfUV8xNzIiOiAiMTgiLCAiTkVXX1FfMTczIjogIlciLCAiTkVXX1FfMTc0IjogIk1lb3ciLCAiTkVXX1FfMTc1IjogIk5pZ2h0IiwgIk5FV19RXzE3NiI6ICJXYXRjaCIsICJORVdfUV8xNzciOiAiVHJhY2siLCAiTkVXX1FfMTc4IjogIkhvc3BpdGFsIiwgIk5FV19RXzE3OSI6ICJEb3duIiwgIk5FV19RXzE4MCI6ICJHaXJsIiwgIk5FV19RXzE4MSI6ICJUb2UiLCAiTkVXX1FfMTgyIjogIldhdGVyIiwgIk5FV19RXzE4MyI6ICJTd2ltIiwgIk5FV19RXzE4NCI6ICJDb2xkIn0=";
+const ANSWER_KEY_B64 = "eyJORVdfUV8wMDEiOiAicmFzaCIsICJORVdfUV8wMDIiOiAiZW50aHVzaWFzdGljIiwgIk5FV19RXzAwMyI6ICJicmllZiIsICJORVdfUV8wMDQiOiAidGhvcm91Z2giLCAiTkVXX1FfMDA1IjogInRvbGVyYW50IiwgIk5FV19RXzAwNiI6ICJicmllZiIsICJORVdfUV8wMDciOiAid2FzdGVmdWwiLCAiTkVXX1FfMDA4IjogImZvcmNlZCIsICJORVdfUV8wMDkiOiAiZGlmZmljdWx0IiwgIk5FV19RXzAxMCI6ICJwZXJzdWFzaXZlIiwgIk5FV19RXzAxMSI6ICJzaHkiLCAiTkVXX1FfMDEyIjogImhhcmR3b3JraW5nIiwgIk5FV19RXzAxMyI6ICJjbHVtc3kiLCAiTkVXX1FfMDE0IjogInVuY2xlYXIiLCAiTkVXX1FfMDE1IjogInNtYXJ0IiwgIk5FV19RXzAxNiI6ICJkaXNvcmRlcmx5IiwgIk5FV19RXzAxNyI6ICJjbGVhciIsICJORVdfUV8wMTgiOiAiYnJpZ2h0IiwgIk5FV19RXzAxOSI6ICJicmF2ZSIsICJORVdfUV8wMjAiOiAicGxlbnRpZnVsIiwgIk5FV19RXzAyMSI6ICJyZWxldmFudCIsICJORVdfUV8wMjIiOiAib3V0ZGF0ZWQiLCAiTkVXX1FfMDIzIjogImlubm9jZW50IiwgIk5FV19RXzAyNCI6ICJ1bmNsZWFyIiwgIk5FV1BfMDI1IjogImhhcm1sZXNzIiwgIk5FV19RXzAyNiI6ICJmcmllbmRseSIsICJORVdfUV8wMjciOiAic2lsZW50IiwgIk5FV19RXzAyOCI6ICJzaG93eSIsICJORVdfUV8wMjkiOiAicHJhY3RpY2FsIiwgIk5FV19RXzAzMCI6ICJzaG9ydC1saXZlZCIsICJORVdfUV8wMzEiOiAic29jaWFibGUiLCAiTkVXX1FfMDMyIjogInNsdWdnaXNoIiwgIk5FV19RXzAzMyI6ICJ0aG91Z2h0ZnVsIiwgIk5FV19RXzAzNCI6ICJldmVyeXdoZXJlIiwgIk5FV19RXzAzNSI6ICJlbnRodXNpYXN0aWMiLCAiTkVXX1FfMDM2IjogInByb2R1Y3RpdmUiLCAiTkVXX1FfMDM3IjogImR1bGwiLCAiTkVXX1FfMDM4IjogImNhcmVmdWwiLCAiTkVXX1FfMDM5IjogImV4cHJlc3NpdmUiLCAiTkVXX1FfMDQwIjogInB1enpsaW5nIiwgIk5FV19RXzA0MSI6ICJtZXRpY3Vsb3VzIiwgIk5FV19RXzA0MiI6ICJwbGFpbiIsICJORVdfUV8wNDMiOiAidW5zdGFibGUiLCAiTkVXX1FfMDQ0IjogImFibnVuZGFudCIsICJORVdfUV8wNDUiOiAidGhyaWZ0eSIsICJORVdfUV8wNDYiOiAiaW5oZXJlbnQiLCAiTkVXX1FfMDQ3IjogImNoZWVmdWwiLCAiTkVXX1FfMDQ4IjogImhhcm1sZXNzIiwgIk5FV19RXzA0OSI6ICJvcmRpbmFyeSIsICJORVdfUV8wNTAiOiAibHV4dXJpb3VzIiwgIk5FV19RXzA1MSI6ICIxODAgeG0iLCAiTkVXX1FfMDUyIjogIjEwIiwgIk5FV19RXzA1MyI6ICLimDQwMCIsICJORVdfUV8wNTQiOiAiVG9reW8iLCAiTkVXX1FfMDU1IjogIuKYNzUiLCAiTkVXX1FfMDU2IjogIldpbGxpYW0gU2hha2VzcGVhcmUiLCAiTkVXX1FfMDU3IjogIjMwIiwgIk5FV19RXzA1OCI6ICJQYWNpZmljIE9jZWFuIiwgIk5FV19RXzA1OSI6ICIzOjIiLCAiTkVXX1FfMDYwIjogIldvbiIsICJORVdfUV8wNjEiOiAiQXUiLCAiTkVXX1FfMDYyIjogIjUwIGNtwrIiLCAiTkVXX1FfMDYzIjogIkdlb3JnZSBXYXNoaW5ndG9uIiwgIk5FV19RXzA2NCI6ICI1MCIsICJORVdfUV8wNjUiOiAiRWd5cHQiLCAiTkVXX1FfMDY2IjogIjIgaG91cnMgMzAgbWludXRlcyIsICJORVdfUV8wNjciOiAiQXVzdHJhbGlhIiwgIk5FV19RXzA2OCI6ICI5IiwgIk5FV19RXzA2OSI6ICJNYXJzIiwgIk5FV19RXzA3MCI6ICIxMyIsICJORVdfUV8wNzEiOiAiRGlhbW9uZCIsICJORVdfUV8wNzIiOiAiMjAiLCAiTkVXX1FfMDczIjogIkFsZXhhbmRlciBHcmFoYW0gQmVsbCIsICJORVdfUV8wNzQiOiAiNDLCsCIsICJORVdfUV8wNzUiOiAiMTAwwrAiLCAiTkVXX1FfMDc2IjogIuKYOCIsICJORVdfUV8wNzciOiAiRmxvdXIiLCAiTkVXX1FfMDc4IjogIjAuNzUiLCAiTkVXX1FfMDc5IjogIjciLCAiTkVXX1FfMDgwIjogIjM6MSIsICJORVdfUV8wODEiOiAiQmx1ZSBXaGFsZSIsICJORVdfUV8wODIiOiAiMjQgY20iLCAiTkVXX1FfMDgzIjogIkphcGFuIiwgIk5FV19RXzA4NCI6ICIzNjYiLCAiTkVXX1FfMDg1IjogIkFtYXpvbiBSaXZlciIsICJORVdfUV8wODYiOiAiMTAwIiwgIk5FV19RXzA4NyI6ICJQb3VuZCBTdGVybGluZyIsICJORVdfUV8wODgiOiAiMTAiLCAiTkVXX1FfMDg5IjogIkFudGFyY3RpYyBEZXNlcnQiLCAiTkVXX1FfMDkwIjogIjEyMCIsICJORVdfUV8wOTEiOiAiSi5LLiBSb3dsaW5nIiwgIk5FV19RXzA5MiI6ICIxMSIsICJORVdfUV8wOTMiOiAiT3R0YXdhIiwgIk5FV19RXzA5NCI6ICLimDIwMCIsICJORVdfUV8wOTUiOiAiSDJPIiwgIk5FV19RXzA5NiI6ICI2MCIsICJORVdfUV8wOTciOiAiQ2FuYmVycmEiLCAiTkVXX1FfMDk4IjogIjEvMyIsICJORVdfUV8wOTkiOiAiRWlmZmVsIFRvd2VyIiwgIk5FV19RXzEwMCI6ICIyNSIsICJORVdfUV8xMDEiOiAiMjAiLCAiTkVXX1FfMTAyIjogIlNhbXBhZ3VpdGEiLCAiTkVXX1FfMTAzIjogIjYiLCAiTkVXX1FfMTA0IjogIlBvcnR1Z3Vlc2UiLCAiTkVXX1FfMTA1IjogIjU2IiwgIk5FV19RXzEwNiI6ICJSb21lIiwgIk5FV19RXzEwNyI6ICI5MCUiLCAiTkVXX1FfMTA4IjogIk8iLCAiTkVXX1FfMTA5IjogIjEwMCIsICJORVdfUV8xMTAiOiAiQ2hlZXRhaCIsICJORVdfUV8xMTEiOiAiNCIsICJORVdfUV8xMTIiOiAiUnVzc2lhIiwgIk5FV19RXzExMyI6ICJNIiwgIk5FV19RXzExNCI6ICJNYWRyaWQiLCAiTkVXX1FfMTE1IjogIjUwIiwgIk5FV19RXzExNiI6ICJZZW4iLCAiTkVXX1FfMTE3IjogIjg6NDUgUE0iLCAiTkVXX1FfMTE4IjogIjUwIiwgIk5FV19RXzExOSI6ICIxODDCsCIsICJORVdfUV8xMjAiOiAiQ2Fpcm8iLCAiTkVXX1FfMTIxIjogIuKYMTIiLCAiTkVXX1FfMTIyIjogIlNwYW5pc2giLCAiTkVXX1FfMTIzIjogIjYwIiwgIk5FV19RXzEyNCI6ICJCZXJsaW4iLCAiTkVXX1FfMTI1IjogIjUiLCAiTkVXX1FfMTI2IjogIlNraW4iLCAiTkVXX1FfMTI3IjogIjEwMCBjZW50cyIsICJORVdfUV8xMjgiOiAiQmVpamluZyIsICJORVdfUV8xMjkiOiAiNSIsICJORVdfUV8xMzAiOiAiQ2FyYWJhbyIsICJORVdfUV8xMzEiOiAiMy80IiwgIk5FV19RXzEzMiI6ICJNb3Njb3ciLCAiTkVXX1FfMTMzIjogIlJpZ2h0LWFuZ2xlZCIsICJORVdfUV8xMzQiOiAiWXVhbiIsICJORVdfUV8xMzUiOiAiMzYiLCAiTkVXX1FfMTM2IjogIk5ldyBEZWxoaSIsICJORVdfUV8xMzciOiAiMy4xNCIsICJORVdfUV8xMzgiOiAiTG9uZG9uIiwgIk5FV1NBfTEzOSI6ICIzIGRheXMiLCAiTkVXX1FfMTQwIjogIlNwYW5pc2giLCAiTkVXX1FfMTQxIjogIjQ1IiwgIk5FV19RXzE0MiI6ICJQYXJpcyIsICJORVdfUV8xNDMiOiAiRmUiLCAiTkVXX1FfMTQ0IjogIjExIiwgIk5FV19RXzE0NSI6ICIxMjAiLCAiTkVXX1FfMTQ2IjogIlNlbmFsIiwgIk5FV19RXzE0NyI6ICI1IGttIiwgIk5FV19RXzE0OCI6ICJNZXJjdXJ5IiwgIk5FV19RXzE0OSI6ICIzMiIsICJORVdfUV8xNTAiOiAiQmFuZ2tvayIsICJORVdfUV8xNTEiOiAiTWFuaWxhIiwgIk5FV19RXzE1MiI6ICJKb3NlIFJpemFsIiwgIk5FV19RXzE1MyI6ICJDYWdheWFuIFJpdmVyIiwgIk5FV19RXzE1NCI6ICJCbHVlIFdoYWxlIiwgIk5FV19RXzE1NSI6ICJNb3VudCBFdmVyZXN0IiwgIk5FV19RXzE1NiI6ICJUaGUgU3VuIiwgIk5FV19RXzE1NyI6ICJMZW9uYXJkbyBkYSBWaW5jaSIsICJORVdfUV8xNTgiOiAiQW5kcmVzIEJvbmlmYWNpbyIsICJORVdfUV8xNTkiOiAiVGhlcm1vbWV0ZXIiLCAiTkVXX1FfMTYwIjogIk1lcmN1cnkiLCAiTkVXX1FfMTYxIjogIkx1em9uIiwgIk5FV1NBfTE2MiI6ICJDYXJib24gRGlveGlkZSIsICJORVdfUV8xNjMiOiAiR2VvbG9neSIsICJORVdfUV8xNjQiOiAiMTkiLCAiTkVXX1FfMTY1IjogIjQyIiwgIk5FV19RXzE2NiI6ICIyMSIsICJORVdfUV8xNjciOiAiSyIsICJORVdfUV8xNjgiOiAiMzAiLCAiTkVXX1FfMTY5IjogIjUwIiwgIk5FV19RXzE3MCI6ICJVIiwgIk5FV19RXzE3MSI6ICIxMDAwMCIsICJORVdfUV8xNzIiOiAiMTgiLCAiTkVXX1FfMTczIjogIlciLCAiTkVXX1FfMTc0IjogIk1lb3ciLCAiTkVXX1FfMTc1IjogIk5pZ2h0IiwgIk5FV19RXzE3NiI6ICJXYXRjaCIsICJORVdfUV8xNzciOiAiVHJhY2siLCAiTkVXX1FfMTc4IjogIkhvc3BpdGFsIiwgIk5FV19RXzE3OSI6ICJEb3duIiwgIk5FV19RXzE4MCI6ICJHaXJsIiwgIk5FV19RXzE4MSI6ICJUb2UiLCAiTkVXX1FfMTgyIjogIldhdGVyIiwgIk5FV1ZfMTgzIjogIlN3aW0iLCAiTkVXX1FfMTg0IjogIkNvbGQifQ==";
 
 /* Utility & UI logic */
 const shuffle = a => { for (let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]] } return a }
@@ -2319,36 +2319,36 @@ function decodeAnswers(){ try{ return JSON.parse(atob(ANSWER_KEY_B64)); }catch(e
 const ANSWERS = decodeAnswers();
 
 function pickRandomSet(){
-  const pool = shuffle(QUESTION_BANK.slice());
-  currentSet = pool.slice(0, QUESTION_COUNT);
-  renderQuestions();
-  resetTimer();
+  const pool = shuffle(QUESTION_BANK.slice());
+  currentSet = pool.slice(0, QUESTION_COUNT);
+  renderQuestions();
+  resetTimer();
 }
 
 function renderQuestions(){
-  questionsDiv.innerHTML = '';
-  scoreDiv.textContent = '';
-  if(!currentSet || currentSet.length===0){ questionsDiv.innerHTML = '<p>No questions available.</p>'; return; }
-  currentSet.forEach((q, idx) => {
-  	const qWrap = document.createElement('div'); qWrap.className='q';
-  	const qh = document.createElement('h3'); qh.textContent = (idx+1) + '. ' + q.q;
-  	qWrap.appendChild(qh);
-  	const opts = document.createElement('div'); opts.className='opts';
-  	q.choices.forEach((ch, i) => {
-  	  const label = document.createElement('label'); label.className='opt';
-  	  label.innerHTML = '<input type="radio" name="'+q.id+'" value="'+ch+'"> ' + ch;
-  	  opts.appendChild(label);
-  	});
-  	qWrap.appendChild(opts);
-  	questionsDiv.appendChild(qWrap);
-  });
+  questionsDiv.innerHTML = '';
+  scoreDiv.textContent = '';
+  if(!currentSet || currentSet.length===0){ questionsDiv.innerHTML = '<p>No questions available.</p>'; return; }
+  currentSet.forEach((q, idx) => {
+    const qWrap = document.createElement('div'); qWrap.className='q';
+    const qh = document.createElement('h3'); qh.textContent = (idx+1) + '. ' + q.q;
+    qWrap.appendChild(qh);
+    const opts = document.createElement('div'); opts.className='opts';
+    q.choices.forEach((ch, i) => {
+      const label = document.createElement('label'); label.className='opt';
+      label.innerHTML = '<input type="radio" name="'+q.id+'" value="'+ch+'"> ' + ch;
+      opts.appendChild(label);
+    });
+    qWrap.appendChild(opts);
+    questionsDiv.appendChild(qWrap);
+  });
 
-  // start timer when first answer selected
-  questionsDiv.querySelectorAll('input[type=radio]').forEach(inp => {
-  	inp.addEventListener('change', () => {
-  	  if(!timerStarted){ timerStarted = true; startTimer(); }
-  	});
-  });
+  // start timer when first answer selected
+  questionsDiv.querySelectorAll('input[type=radio]').forEach(inp => {
+    inp.addEventListener('change', () => {
+      if(!timerStarted){ timerStarted = true; startTimer(); }
+    });
+  });
 }
 
 function resetTimer(){ clearInterval(timer); remaining = 15*60; timerStarted = false; updateTimer(); }
@@ -2357,30 +2357,30 @@ function updateTimer(){ const m = Math.floor(remaining/60), s = remaining%60; ti
 function autoSubmit(){ handleSubmit(); }
 
 function handleSubmit(){
-  clearInterval(timer);
-  let correct = 0;
-  currentSet.forEach((q, idx) => {
-  	const sel = document.querySelector('input[name="'+q.id+'"]:checked');
-  	const qEl = questionsDiv.children[idx];
-  	const prev = qEl.querySelector('.answer'); if(prev) prev.remove();
-  	const ansDiv = document.createElement('div'); ansDiv.className='answer';
-  	const correctAns = ANSWERS[q.id] || '';
-  	
-  	if(!correctAns) {
-  	  console.warn(`No answer key found for question ID: ${q.id}`);
-s  	  ansDiv.innerHTML = '❓ No answer key available for this question.';
-  	} else if(sel && sel.value === correctAns){ 
-  	  correct++; 
-  	  ansDiv.innerHTML = '✅ Correct! <strong>'+correctAns+'</strong>'; 
-  	} else { 
-  	  ansDiv.innerHTML = '❌ Correct answer: <strong>'+correctAns+'</strong>'; 
-  	}
-  	qEl.appendChild(ansDiv);
-  });
-  const pct = Math.round((correct/currentSet.length)*100);
-  const emoji = pct < 80 ? '😢' : '🎉';
-  scoreDiv.innerHTML = 'Score: ' + correct + '/' + currentSet.length + ' (' + pct + '%) ' + emoji;
-  if(pct >= 80) scoreDiv.classList.add('graffiti'); else scoreDiv.classList.remove('graffiti');
+  clearInterval(timer);
+  let correct = 0;
+  currentSet.forEach((q, idx) => {
+    const sel = document.querySelector('input[name="'+q.id+'"]:checked');
+    const qEl = questionsDiv.children[idx];
+    const prev = qEl.querySelector('.answer'); if(prev) prev.remove();
+    const ansDiv = document.createElement('div'); ansDiv.className='answer';
+    const correctAns = ANSWERS[q.id] || '';
+    
+    if(!correctAns) {
+      console.warn(`No answer key found for question ID: ${q.id}`);
+      ansDiv.innerHTML = '❓ No answer key available for this question.';
+    } else if(sel && sel.value === correctAns){
+      correct++;
+      ansDiv.innerHTML = '✅ Correct! <strong>'+correctAns+'</strong>';
+    } else {
+      ansDiv.innerHTML = '❌ Correct answer: <strong>'+correctAns+'</strong>';
+    }
+    qEl.appendChild(ansDiv);
+  });
+  const pct = Math.round((correct/currentSet.length)*100);
+  const emoji = pct < 80 ? '😢' : '🎉';
+  scoreDiv.innerHTML = 'Score: ' + correct + '/' + currentSet.length + ' (' + pct + '%) ' + emoji;
+  if(pct >= 80) scoreDiv.classList.add('graffiti'); else scoreDiv.classList.remove('graffiti');
 }
 
 startBtn.addEventListener('click', ()=>{ startCard.style.display='none'; quizCard.style.display='block'; pickRandomSet(); });
